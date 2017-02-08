@@ -1,0 +1,41 @@
+body {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: left top;
+    padding-top: 2%
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+    font-family:"Trirong";
+}
+
+p, label {
+    font-family: "Trirong";
+    font-size: 125%
+}
+
+#formContainer {
+    padding: 215px;
+}
+
+#menu {
+    background-size: cover;
+    background-color: whitesmoke;
+    padding: 12px;
+    border-radius: 25px;
+}
+
+#beerList, #beerDetails, #editForm, #breweryList, #breweryDetails {
+    background-color: whitesmoke;
+    color: black;
+    font-family: sans-serif;
+    padding: 50px;
+    border-radius: 25px;
+}
+
+.panel{
+    width: 80%;
+    margin-left: auto;
+    margin-right:auto;
+}

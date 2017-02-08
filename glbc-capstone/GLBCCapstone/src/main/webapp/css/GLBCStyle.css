@@ -1,0 +1,69 @@
+body {
+    background-image: url("../img/background2.jpg");
+    min-height: 100vh;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center center;
+    padding: 5%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family:sans-serif;
+}
+
+p, label {
+    font-family: sans-serif;
+    font-size: 125%
+}
+
+#formContainer {
+    padding: 215px;
+}
+
+#beerList, #beerDetails, #editForm, #breweryList, #breweryDetails, #user-login-form {
+    background-color: whitesmoke;
+    color: black;
+    font-family: sans-serif;
+    padding: 30px;
+    border-radius: 25px;
+}
+
+.panel{
+    width: 80%;
+    margin-left: auto;
+    margin-right:auto;
+}
+
+
+.articleTitle, .beerName, .breweryName {
+    font-family: 'Cinzel', sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    display: block;
+
+}
+
+.articleUserName, .articlePublicationDate, .beerStyle, .beerHop, .beerAbv, .beerIbu, .breweryName, .breweryLocation, .breweryTextBody{
+    display: block;
+}
+
+#title {
+    font-family: 'Cinzel';
+    font-size: 80px;
+    display: inline-block;
+    color: black;
+}
+
+
+
+.searchResultArticleTitle, .searchResultBeerName, .searchResultBreweryName {
+    font-family: 'Cinzel', sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    display: block;
+
+}
+
+.searchResultArticleUserName, .searchResultArticlePublicationDate, .searchResultArticleTextBody, searchResultArticleCategory, .searchResultBeerStyle, .searchResultBeerHop, .searchResultBeerAbv, .searchResultBeerIbu, searchResultBeerTextBody, .searchResultBreweryLocation, .searchResultBreweryTextBody {
+    display: block;
+}

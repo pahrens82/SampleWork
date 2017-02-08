@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/mvc
+                           http://www.springframework.org/schema/mvc/spring-mvc.xsd
+                           http://www.springframework.org/schema/tx
+                           http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd"> 
+
+    <!-- #1 Use annotation-driven transactions -->
+    <tx:annotation-driven />
+	
+    <!-- #2 Define Data Source -->
+    <!--	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+            <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+            <property name="url"
+                    value="jdbc:mysql://glbctest.cnlzkuufxzb5.us-west-2.rds.amazonaws.com:3306/GLBC_test" />
+            <property name="username" value="glbc" />
+            <property name="password" value="hopHead1337" />
+            <property name="initialSize" value="5" />
+            <property name="maxTotal" value="10" />
+    </bean>-->
+ 
+    <!-- bean for running tests on the localhost-->
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url"
+                          value="jdbc:mysql://localhost:3306/GLBC_test" />
+        <property name="username" value="root" />
+        <property name="password" value="mysql" />
+        <property name="initialSize" value="5" />
+        <property name="maxTotal" value="10" />
+    </bean>
+
+    <!-- #3 Define Transaction Manager -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <!-- #3 Define JdbcTemplate -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <!-- #3 Define the databae DAO -->
+    <bean id="beerDaoDbImpl" class="com.sg.glbccapstone.dao.BeerDaoDBImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate" />
+    </bean>
+
+    <bean id="breweryDaoDbImpl" class="com.sg.glbccapstone.dao.BreweryDaoDBImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate" />
+    </bean>
+
+    <bean id="articleDaoDbImpl" class="com.sg.glbccapstone.dao.ArticleDaoDbImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate" />
+    </bean>
+
+
+	<bean id="CategoryDao" class="com.sg.glbccapstone.dao.CategoryDaoDBImpl">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
+	
+	<!-- These dao's have yet to be created -->
+<!--	<bean id="commentDao" class="com.sg.glbccapstone.dao.CommentDaoDbImpl">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
+	
+	<bean id="tagDao" class="com.sg.glbccapstone.dao.TagDaoDbImpl">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>-->
+	
+	<bean id="userDaoDbImpl" class="com.sg.glbccapstone.dao.UserDaoDbImpl">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
+	
+</beans>

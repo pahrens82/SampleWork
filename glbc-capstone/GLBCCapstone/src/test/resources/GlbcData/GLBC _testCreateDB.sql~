@@ -1,0 +1,167 @@
+
+Drop Database If Exists GLBC_test;
+Create Database GLBC_test;
+Use GLBC_test;
+
+
+Create Table Category(
+Category_ID int Not Null auto_increment,
+`Name` varchar(30),
+Primary Key(Category_ID)
+);
+
+
+Create Table Tag(
+Tag_ID int Not Null auto_increment,
+`Name` varchar(50),
+Primary Key(Tag_ID)
+);
+
+
+Create Table Permission(
+Permission_ID int Not Null auto_increment,
+`Name` varchar(50),
+Description varchar(180),
+Primary Key(Permission_ID)
+);
+
+Create Table Beer(
+Beer_ID int Not Null auto_increment,
+Brewery_ID int Not Null,
+Approval bool,
+BeerName varchar(50),
+Summary varchar(180),
+TextBody blob,
+Style varchar(30),
+Hop varchar(30),
+ABV DECIMAL(5,2),
+IBU DECIMAL(5,2),
+Primary Key(Beer_ID)
+);
+
+Create Table Brewery(
+Brewery_ID int Not Null auto_increment,
+Approval bool,
+BreweryName varchar(50),
+Summary varchar(180),
+TextBody blob,
+City varchar(50),
+State varchar(50),
+Brewmaster varchar(50),
+Primary Key(Brewery_ID)
+);
+
+Create Table Article(
+Article_ID int Not Null auto_increment,
+User_ID int Not Null,
+Approval bool,
+ArticleName varchar(50),
+Summary varchar(180),
+TextBody blob,
+DateCreated varchar(10),
+DateEdited varchar(10),
+Primary Key(Article_ID)
+);
+
+Create Table `User`(
+User_ID int Not Null auto_increment,
+Permission_ID int Not Null,
+Username varchar(50),
+`Password` varchar(50),
+FirstName varchar(50),
+LastName varchar(50),
+Email varchar(80),
+Primary Key(User_ID)
+);
+
+
+Create Table `Comment`(
+Comment_ID int Not Null auto_increment,
+Article_ID int Not Null,
+User_ID int Not Null,
+Permission_ID int Not Null,
+TextBody blob,
+DateCreated varchar(10),
+DateEdited varchar(10),
+Primary Key(Comment_ID)
+);
+
+Create Table CategoryArticle(
+Category_ID int Not Null,
+Article_ID int Not Null
+);
+
+Create Table ArticleTag(
+Article_ID int Not Null,
+Tag_ID int Not Null
+);
+
+Alter Table Beer Add Constraint fk_Beer_Brewery 
+Foreign Key (Brewery_ID) References Brewery(Brewery_ID);
+
+Alter Table CategoryArticle Add Constraint fk_CategoryArticle_Category 
+Foreign Key (Category_ID) References Category(Category_ID);
+
+Alter Table CategoryArticle Add Constraint fk_CategoryArticle_Article 
+Foreign Key (Article_ID) References Article(Article_ID);
+
+
+Alter Table User Add Constraint fk_User_Permission 
+Foreign Key (Permission_ID) References Permission(Permission_ID);
+
+
+Alter Table Article Add Constraint fk_Article_User 
+Foreign Key (User_ID) References `User`(User_ID);
+
+
+Alter Table ArticleTag Add Constraint fk_ArticleTag_Article 
+Foreign Key (Article_ID) References Article(Article_ID);
+
+Alter Table ArticleTag Add Constraint fk_ArticleTag_Tag 
+Foreign Key (Tag_ID) References Tag(Tag_ID);
+
+
+Alter Table `Comment` Add Constraint fk_Comment_Article 
+Foreign Key (Article_ID) References Article(Article_ID);
+
+Alter Table `Comment` Add Constraint fk_Comment_User 
+Foreign Key (User_ID) References `User`(User_ID);
+
+Alter Table `Comment` Add Constraint fk_Comment_Permission 
+Foreign Key (Permission_ID) References Permission(Permission_ID);
+
+Insert Into Brewery Values(1, true, "Foundation Brewing Company", "THIS IS A DESCRIPTION", "This is a body to the static page", "Portland", "Maine", "Jason Perkins"),
+(2, true, "Bissell Brothers Brewing", "THIS IS A DESCRIPTION", "This is a body to the static page", "Portland", "Maine", "Noah Bissell"),
+(3, true, "Barreled Souls Brewing Company", "THIS IS A DESCRIPTION", "This is a body to the static page", "Saco", "Maine", "Matthew Mills");
+
+Insert Into Beer Values(1, 1, true, "Epiphany", "DESCRIPTION", "This is a body to the static page", "Imperial IPA", "Citra", 8.00, 100),
+(2, 2, true, "The Substance", "DESCRIPTION", "This is a body to the static page", "American IPA", "Centennial", 6.60, 49.27),
+(3, 3, true, "Space Gose", "DESCRIPTION", "This is a body to the static page", "Gose", "", 4.90,"");
+
+Insert Into Permission Values(1, "Admin", "Site Admin: No approval required and manage users"),
+(2, "Super User", "Add/Edit/Remove all content. Approval Required"),
+(3, "User", "Allowed to Comment"),
+(4, "Guest", "Allowed to View"),
+(5, "Restricted", "No Access");
+
+Insert Into User Values(1, 1, "admin", "passwd", "admin", "admin", "admin@swg.com"),
+(2, 2, "superuser", "passwd", "Hunter", "Thompson", "hst@theedge.com"),
+(3, 3, "maj5004", "passwd", "Mark", "Joiner", "maj5004@gmail.com");
+
+Insert Into Article Values(1, 1, true, "Artical on Epiphany", "Best. Beer. Ever.", "Body of article", "11-16-16", ""),
+(2, 2, true, "Artical on Substance", "Very hard to get.. but worthing it you can.", "Body of article", "11-16-16", ""),
+(3, 2, true, "Artical on Space Gose", "Fantastic on a hot summer day.", "Body of article", "11-16-16", "");
+
+Insert Into `Comment` Values(1, 1, 1, 1, "I'm the admin, test comment", "11-16-16", ""),
+(2, 2, 2, 2, "I'm the superuser, test comment", "11-16-16", ""),
+(3, 3, 3, 3, "I'm the user, test comment", "11-16-16", "");
+
+Insert Into Category Value(1, "IPA"), (2, "AIPA"), (3, "Gose");
+
+Insert Into CategoryArticle Value(1, 1), (2, 2), (3, 3);
+
+Insert Into Tag Values(1, "Top10BeerList"), 
+(2, "PlayingHardToGet"), 
+(3, "SunnyDaySipper");
+
+Insert Into ArticleTag Values(1, 1), (2, 2), (3, 3);

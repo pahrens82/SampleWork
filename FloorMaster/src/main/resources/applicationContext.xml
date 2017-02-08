@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+">
+    <bean id="OrderDAOImplFile" class="FloorMasterDAO.OrderDAOImplFile" />  
+    <bean id="OrderDAOInMem" class="FloorMasterDAO.OrderDAOInMem" />  
+    <bean id="ProductDAOImplFile" class="FloorMasterDAO.ProductDAOImplFile" />
+    <bean id="ProductDAOInMem" class="FloorMasterDAO.ProductDAOInMem" />
+    <bean id="TaxDAOImplFile" class="FloorMasterDAO.TaxDAOImplFile" />
+    <bean id="TaxDAOInMem" class="FloorMasterDAO.TaxDAOInMem" />
+
+    <bean id="floorMasterControllerFileIO" class="FloorMasterOps.FloorMasterController">
+        <constructor-arg ref="OrderDAOImplFile" />
+        <constructor-arg ref="ProductDAOImplFile" />
+        <constructor-arg ref="TaxDAOImplFile" />
+    </bean>
+    
+    <bean id="floorMasterControllerInMem" class="FloorMasterOps.FloorMasterController">
+        <constructor-arg ref="OrderDAOInMem" />
+        <constructor-arg ref="ProductDAOInMem" />
+        <constructor-arg ref="TaxDAOInMem" />
+    </bean>
+
+    
+</beans>

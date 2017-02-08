@@ -1,0 +1,10 @@
+use `GLBC_test`;
+select UserPermissions.username, Permission.authority 
+from UserPermissions
+join Permission on UserPermissions.Permission_ID=Permission.Permission_ID
+where username="admin";
+
+select username, password, enabled from User where username="admin";
+
+select User.username as username, Permission.authority as authority from Permission
+join User on User.Permission_ID=Permission.Permission_ID where username="admin";
