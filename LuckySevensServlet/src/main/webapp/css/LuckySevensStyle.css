@@ -1,0 +1,24 @@
+@import "https://fonts.googleapis.com/css?family=Yellowtail";
+body {
+	background-image: url(http://1-background.com/images/silk/black-silk-repeating-background.jpg);
+	color:#DAA520;
+	padding:50px;
+	font-family:"Yellowtail", cursive;
+	font-size:35px;
+	text-align:center;
+}
+button {
+	width:150px;
+	height:100px;
+	color:black;
+	background-color:gray;
+	border:2px solid #FFD700;
+	font-size:25px;
+	margin-top:25px;
+}
+#initialBet {
+	color:black;
+}			
+h1 {
+	font-size:50px;
+}

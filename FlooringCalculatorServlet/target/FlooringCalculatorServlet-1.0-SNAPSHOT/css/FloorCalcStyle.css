@@ -1,0 +1,25 @@
+@import "https://fonts.googleapis.com/css?family=Bitter";
+body {
+	background-image: url(http://www.solib.org/wp-content/uploads/2016/02/flooring-1.jpg);
+        background-size: cover;
+	color:black;
+	padding:50px;
+	font-family:"Bitter", cursive;
+	font-size:20px;
+	text-align:center;
+}
+button {
+	width:150px;
+	height:100px;
+	color:black;
+	background-color:gray;
+	border:2px solid #FFD700;
+	font-size:25px;
+	margin-top:25px;
+}
+#initialBet {
+	color:black;
+}			
+h1 {
+	font-size:80px;
+}

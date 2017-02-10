@@ -67,7 +67,7 @@ public class FlooringCalculatorServlet extends HttpServlet {
         Floor newFloor = controller.calculateAreaAndCost(length, width, price);
         double laborCost = controller.calculateLaborCost(newFloor);
 
-        String message1 = "The flooring you have ordered costs $" + df.format(price) + ".";
+        String message1 = "The flooring you have ordered costs $" + df.format(price) + " per square foot.";
         String message2 = "The area you are going to cover is " + newFloor.getArea() + " square feet.";
         String message3 = "The material cost for this project is $" + df.format(newFloor.getPrice());
         String message4 = "The labor cost for this project is $" + df.format(laborCost);
