@@ -8,13 +8,9 @@
                 </button>
                 <h4 class="modal-title" id="detailsModalLabel">DVD Details</h4>
             </div>
-            <div class="modal-body"
-                 <h3 id="dvd-id"></h3>
-                <table class="table table-bordered">
-                    <tr>
-                        <th>Title:</th>
-                        <td id="dvd-title"></td>
-                    </tr>
+            <div class="modal-body">
+                 <h3 id="dvd-title"></h3>
+                <table class="table table-bordered">                   
                     <tr>
                         <th>Release Date:</th>
                         <td id="dvd-date"></td>

@@ -36,7 +36,7 @@ $(document).ready(function () {
         $("#edit-button").click(function (event) {
             event.preventDefault();
             $.ajax({
-                type: "GET",
+                type: "PUT",
                 url: "dvd/" + $("#edit-id").val(),
                 "data-type": "json",
                 data: JSON.stringify({
@@ -52,7 +52,7 @@ $(document).ready(function () {
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 }
-            }).success(function () {
+            }).success(function (data, status) {
                 loadDvds();
             });
         });
@@ -92,6 +92,7 @@ $(document).ready(function () {
 
 });
 function loadDvds() {
+    clearDvdTable();
     $.ajax({
         url: "loadDvds"
     }).success(function (data, status) {
@@ -100,7 +101,6 @@ function loadDvds() {
 }
 
 function fillDvdTable(dvdList, status) {
-    clearDvdTable();
     var dvdTable = $("#dvdContent");
     $.each(dvdList, function (index, dvd) {
         dvdTable.append($("<tr>")
@@ -156,7 +156,6 @@ $("#detailsModal").on("show.bs.modal", function (event) {
         type: "GET",
         url: "getDvd/" + dvdId
     }).success(function (dvd) {
-        modal.find("#dvd-id").text(dvd.dvdId);
         modal.find("#dvd-title").text(dvd.title);
         modal.find("#dvd-date").text(dvd.date);
         modal.find("#dvd-director").text(dvd.director);

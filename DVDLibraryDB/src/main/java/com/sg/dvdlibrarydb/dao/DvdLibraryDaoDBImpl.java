@@ -29,7 +29,7 @@ public class DvdLibraryDaoDBImpl implements DvdLibraryDao {
     private static final String SELECT_DVD
             = "select * from Dvd where dvdId = ?";
     private static final String UPDATE_DVD
-            = "update Dvd set title = ?, date = ?, director = ?, studio = ?, rating = ?, notes = ?";
+            = "update Dvd set title = ?, date = ?, director = ?, studio = ?, rating = ?, notes = ? where dvdId = ?";
     private static final String SELECT_ALL_DVDS
             = "select * from Dvd";
     private static final String SELECT_DVDS_BY_DIRECTOR
@@ -54,7 +54,8 @@ public class DvdLibraryDaoDBImpl implements DvdLibraryDao {
                 dvd.getDirector(),
                 dvd.getStudio(),
                 dvd.getRating(),
-                dvd.getNotes());
+                dvd.getNotes()
+        );
         dvd.setDvdId(jdbcTemplate.queryForObject("select Last_INSERT_ID()", Integer.class));
         return dvd;
     }
@@ -66,7 +67,7 @@ public class DvdLibraryDaoDBImpl implements DvdLibraryDao {
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    //@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void updateDvd(Dvd dvd) {
         jdbcTemplate.update(UPDATE_DVD,
                 dvd.getTitle(),
@@ -74,7 +75,8 @@ public class DvdLibraryDaoDBImpl implements DvdLibraryDao {
                 dvd.getDirector(),
                 dvd.getStudio(),
                 dvd.getRating(),
-                dvd.getNotes());
+                dvd.getNotes()
+        );
     }
 
     @Override
